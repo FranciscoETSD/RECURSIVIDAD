@@ -77,6 +77,34 @@ public static void main(String[] args) {
     public static int maximoVector(int[] vector) {
         return maximoVector(vector,0,0);
     }
+    /*
+    --INDICE DE UN VECTOR--
+    Dado un vector de números enteros ordenado decrecientemente,
+    diseñar un método tal que compruebe si el valor de alguno de los elementos del vector coincide con su índice.
+    Podéis hacer dos versiones:--
+    */
+    public static int indiceVector (int[] vector, int indice){
+        int contador = 0 ;
+        if (indice == vector.length - 1){//caso base
+            if(indice == vector[indice]) {
+                contador++;
+            }
+        }else {//llamada recursiva
+
+            if (indice == vector[indice]){
+                contador++;
+            }
+            contador = contador + indiceVector(vector, indice + 1);
+
+        }
+        return contador;
+
+    }
+    public static boolean indiceVector(int[] vector ){
+        return indiceVector(vector, 0) > 0;
+
+    }
+
 }
 
 
