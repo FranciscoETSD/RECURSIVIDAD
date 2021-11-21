@@ -7,5 +7,9 @@ public class Main {
 
         /*--FIBONACI--*/
         //Ejecutar en la parte de ejercicios//
+
+        /*--MAXIMO DE UN VECTOR CON RECURSIVIDAD--*/
+        int [] vector = {2, 1, 6, 7, 6, 3, 4, 3};
+        System.out.println(Ejercicios.maximoVector(vector));
     }
 }
