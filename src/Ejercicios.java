@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ejercicios {
@@ -33,22 +34,23 @@ public class Ejercicios {
  la sucesión--
  */
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    Scanner sc = new Scanner(System.in);
-    System.out.print("Introduce el número de elementos a mostrar de la serie: ");
-    int limite = sc.nextInt();
-    sc.close();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce el número de elementos a mostrar de la serie: ");
+        int limite = sc.nextInt();
+        sc.close();
 
-    for(int i = 0; i<limite; i++){
-        System.out.print(funcionFibonacci(i) + ", ");
+        for (int i = 0; i < limite; i++) {
+            System.out.print(funcionFibonacci(i) + ", ");
+        }
     }
-}
-    private static int funcionFibonacci(int num){
-        if(num == 0 || num==1)
+
+    private static int funcionFibonacci(int num) {
+        if (num == 0 || num == 1)
             return num;
         else
-            return funcionFibonacci(num-1) + funcionFibonacci(num-2);
+            return funcionFibonacci(num - 1) + funcionFibonacci(num - 2);
     }
 
     /*
@@ -56,16 +58,16 @@ public static void main(String[] args) {
     vector = {2, 9, 6, 7, 6, 3, 4, 3}
      */
     private static int maximoVector(int[] vector, int indice, int maximo) {
-        if(indice == vector.length -1){ //caso base
-            if(vector[indice] > maximo) {
+        if (indice == vector.length - 1) { //caso base
+            if (vector[indice] > maximo) {
                 maximo = vector[indice];
             }
         } else { //llamada a la recursividad
-            if(vector[indice] > maximo) {
+            if (vector[indice] > maximo) {
                 maximo = vector[indice];
             }
 
-            maximo = maximoVector(vector,indice + 1, maximo);
+            maximo = maximoVector(vector, indice + 1, maximo);
         }
 
         return maximo;
@@ -75,23 +77,24 @@ public static void main(String[] args) {
     Metodo auxiliar que llama al metodo recursivo
      */
     public static int maximoVector(int[] vector) {
-        return maximoVector(vector,0,0);
+        return maximoVector(vector, 0, 0);
     }
+
     /*
     --INDICE DE UN VECTOR--
-    Dado un vector de números enteros ordenado decrecientemente,
+    1)Dado un vector de números enteros ordenado decrecientemente,
     diseñar un método tal que compruebe si el valor de alguno de los elementos del vector coincide con su índice.
     Podéis hacer dos versiones:--
     */
-    public static int indiceVector (int[] vector, int indice){
-        int contador = 0 ;
-        if (indice == vector.length - 1){//caso base
-            if(indice == vector[indice]) {
+    public static int indiceVector(int[] vector, int indice) {
+        int contador = 0;
+        if (indice == vector.length - 1) {//caso base
+            if (indice == vector[indice]) {
                 contador++;
             }
-        }else {//llamada recursiva
+        } else {//llamada recursiva
 
-            if (indice == vector[indice]){
+            if (indice == vector[indice]) {
                 contador++;
             }
             contador = contador + indiceVector(vector, indice + 1);
@@ -100,12 +103,67 @@ public static void main(String[] args) {
         return contador;
 
     }
-    public static boolean indiceVector(int[] vector ){
+
+    public static boolean indiceVector(int[] vector) {
         return indiceVector(vector, 0) > 0;
 
     }
 
+    /*
+    --INDICE VECTOR--
+    2)- Otra que, usando dos índices, sea capaz de descartar a cada llamada la mitad del vector.
+    En ambos casos implementad los métodos que hacen la llamada inicial al que habéis diseñado recursivamente
+    dando valores iniciales a los índices.
+     */
+    private static class main {
+        static Scanner entrada = new Scanner(System.in);
+        static int GetInt(String cadena) {
+            int numero;
+            do{
+                try {
+                    System.out.printf(cadena + "\n");
+                    numero = entrada.nextInt();
+                    break;
+                } catch (InputMismatchException e){
+                    System.out.println("¡Cuidado! Solo puedes insertar números. \\n");
+                    entrada.next();
+                }
+            }while(true);
+            return numero;
+        }
+        static int BusquedaRecursiva(int [] vec, int n, int dato) {
+            if (n ==0 && vec[n]== dato)
+                return n;
+            else if( n==0)
+                return -1;
+            else if (vec[n]==dato)
+                return n;
+            else
+                return BusquedaRecursiva(vec, n-1,dato);
+        }
+        public static void main(String[] args) {
+
+            int n,dato,retorno;
+            n= GetInt("por favor ingresar el tamano del vector:");
+            int [] vec= new int [n];
+            for(int i=0; i<n; i++) {
+                vec[i] = GetInt("Introduzca número " + i + ":");
+            }
+            dato= GetInt("Por favor ingresar el dato a buscar:");
+            retorno=BusquedaRecursiva(vec, n-1,dato);
+            if(retorno==dato)
+                System.out.println("El dato se encuentra en el vector y en el indice concide");
+            else if (retorno>-1)
+                System.out.println("El dato se encuentra en el vector pero el indice no concide");
+            else
+                System.out.println("El dato no se encuentra:");
+        }
+    }
 }
+
+
+
+
 
 
 
